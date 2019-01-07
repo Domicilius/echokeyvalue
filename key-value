@@ -1,0 +1,56 @@
+#!/usr/bin/env ruby
+
+# Public: Store and fetch key values using user input
+def key_value
+
+  # State variable to track running of execution loop
+  done = 0
+
+  # Data structure to store key values defined by user
+  keys = Hash.new
+
+  # Run execution in continuous loop. Change action each iteration based on
+  # user input. Valid commands and their return statements are:
+  #   put   - store value associated with given key
+  #             "put favorite_color purple"
+  #             stores value purple with key favorite_color
+  #           returns: "ok"
+  #   fetch - search data structure for given key
+  #             "fetch favorite_color"
+  #              search data structure for key favorite_color
+  #           returns: value (successful key find)
+  #                or: "value not found" (failed key find)
+  #   exit  - exit execution loop
+  #           returns: "Bye!"
+  while done != 1
+    # Print "> " to indicate to user that program is awaiting input
+    print "> "
+    
+    # Read in user input and separate the read String by space character
+    usr_input = gets.chomp.strip().split(" ")
+
+    # Set control flow command to first word in user input
+    usr_command = usr_input[0]
+    case usr_command
+    
+    # Final case, halt execution if user specifies "exit" as command
+    when "exit"
+      done = 1
+      print "Bye!"
+      break
+    
+    # Store case, stores value associated with given key
+    when "put"
+      keys[usr_input[1]] = usr_input[2]
+      puts "ok"
+    
+    # Find case, find value associated with given key
+    when "fetch"
+      puts keys[usr_input[1]] ? keys[usr_input[1]] : "value not found"
+    else
+      puts "Unknown command. Known commands are: put, fetch, exit"
+    end
+  end
+end
+
+key_value
