@@ -1,8 +1,10 @@
 #!/usr/bin/env ruby
-require 'stringio'
 
+
+# Public: Simple key-value demonstration class
 class KeyValue
 
+  # Initialize data structure for key-value store used in rest of application
   def initialize
     @keys = Hash.new
   end
